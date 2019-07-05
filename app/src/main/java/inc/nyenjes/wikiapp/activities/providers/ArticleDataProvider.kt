@@ -21,7 +21,6 @@ class ArticleDataProvider {
     fun Search(term: String, skip: Int, take: Int, responseHandler: (result: WikiResult) -> Unit?) {
         Urls.getSearchUrl(term, skip, take).httpGet()
                 .responseObject(WikiPediaDataDeserializer()){_, response, result ->
-                    println("-------------- : "+response)
                     if(response.statusCode != 200) {
                         throw Exception("Unable to get articles")
                     }
@@ -34,8 +33,6 @@ class ArticleDataProvider {
     fun getRandom(take: Int, responseHandler: (result: WikiResult) -> Unit?) {
         Urls.getRandomArticles(take).httpGet()
                 .responseObject(WikiPediaDataDeserializer()){_,response, result ->
-                    println("-------------- : "+response)
-
                     if(response.statusCode != 200) {
                         throw Exception("Unable to get articles")
                     }
