@@ -1,8 +1,8 @@
 package models
 
 class WikiPage(
-        val pageid: Int? = null,
-        val title: String? = null,
-        val fullurl: String? = null,
-        val thumbnail: WikiThumbnail? = null
+        var pageid: Int? = null,
+        var title: String? = null,
+        var fullurl: String? = null,
+        var thumbnail: WikiThumbnail? = null
 )
