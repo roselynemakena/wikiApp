@@ -48,7 +48,7 @@ class SearchActivity : AppCompatActivity() {
         searchView.requestFocus()
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
-                articleDataProvider.Search(query, 0 ,20, {wikiresult ->
+                articleDataProvider.search(query, 0 ,20, { wikiresult ->
                     adapter.currentResults.clear()
                     adapter.currentResults.addAll(wikiresult.query!!.pages)
                     runOnUiThread { adapter.notifyDataSetChanged() }

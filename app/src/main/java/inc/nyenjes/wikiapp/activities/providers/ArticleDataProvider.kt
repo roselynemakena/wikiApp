@@ -18,7 +18,7 @@ class ArticleDataProvider {
     }
 
 
-    fun Search(term: String, skip: Int, take: Int, responseHandler: (result: WikiResult) -> Unit?) {
+    fun search(term: String, skip: Int, take: Int, responseHandler: (result: WikiResult) -> Unit?) {
         Urls.getSearchUrl(term, skip, take).httpGet()
                 .responseObject(WikiPediaDataDeserializer()){_, response, result ->
                     if(response.statusCode != 200) {
