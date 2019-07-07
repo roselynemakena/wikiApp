@@ -34,6 +34,4 @@ class FavoritesFragment : Fragment() {
 
         return view
     }
-
-
 }
