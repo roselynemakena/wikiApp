@@ -1,26 +1,28 @@
-package inc.nyenjes.wikiapp.activities
+package inc.nyenjes.wikiapp.activities.activities
 
 import android.app.SearchManager
 import android.content.Context
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.SearchView
 import inc.nyenjes.wikiapp.R
+import inc.nyenjes.wikiapp.activities.WikiApplication
 import inc.nyenjes.wikiapp.activities.adapters.ArticleListItemRecyclerAdapter
-import inc.nyenjes.wikiapp.activities.providers.ArticleDataProvider
+import inc.nyenjes.wikiapp.activities.managers.WikiManager
 import kotlinx.android.synthetic.main.activity_search.*
 
 class SearchActivity : AppCompatActivity() {
 
     private var adapter : ArticleListItemRecyclerAdapter = ArticleListItemRecyclerAdapter()
-    private var articleDataProvider : ArticleDataProvider = ArticleDataProvider()
+    private var wikiManager : WikiManager? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_search)
+        wikiManager = (applicationContext as WikiApplication).wikiManager
 
         setSupportActionBar(search_toolbar)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
@@ -48,7 +50,7 @@ class SearchActivity : AppCompatActivity() {
         searchView.requestFocus()
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
-                articleDataProvider.search(query, 0 ,20, { wikiresult ->
+                wikiManager?.search(query, 0 ,20, { wikiresult ->
                     adapter.currentResults.clear()
                     adapter.currentResults.addAll(wikiresult.query!!.pages)
                     runOnUiThread { adapter.notifyDataSetChanged() }

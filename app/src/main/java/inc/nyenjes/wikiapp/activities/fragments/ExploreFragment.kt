@@ -2,6 +2,7 @@ package inc.nyenjes.wikiapp.activities.fragments
 
 
 import android.app.AlertDialog
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -14,10 +15,11 @@ import android.view.View
 import android.view.ViewGroup
 
 import inc.nyenjes.wikiapp.R
-import inc.nyenjes.wikiapp.activities.SearchActivity
+import inc.nyenjes.wikiapp.activities.WikiApplication
+import inc.nyenjes.wikiapp.activities.activities.SearchActivity
 import inc.nyenjes.wikiapp.activities.adapters.ArticleCardRecyclerAdapter
+import inc.nyenjes.wikiapp.activities.managers.WikiManager
 import inc.nyenjes.wikiapp.activities.providers.ArticleDataProvider
-import kotlinx.android.synthetic.main.fragment_explore.*
 import kotlin.jvm.java
 
 // TODO: Rename parameter arguments, choose names that match
@@ -26,12 +28,19 @@ import kotlin.jvm.java
  *
  */
 class ExploreFragment : Fragment() {
-    private val articleProvider: ArticleDataProvider = ArticleDataProvider()
+    private var wikiManager: WikiManager? = null
+
     private val adapter: ArticleCardRecyclerAdapter = ArticleCardRecyclerAdapter()
 
     var searchCardView: CardView? = null
     var exploreRecycler: RecyclerView? = null
     var refresher: SwipeRefreshLayout? = null
+
+    override fun onAttach(context: Context?) {
+        super.onAttach(context)
+
+        wikiManager = (activity!!.applicationContext as WikiApplication).wikiManager
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -64,7 +73,7 @@ class ExploreFragment : Fragment() {
         refresher?.isRefreshing = true
         try {
 
-            articleProvider.getRandom(15, {wikiresult ->
+            wikiManager?.getRandom(15, {wikiresult ->
                 adapter.currentReslts.clear()
                 adapter.currentReslts.addAll(wikiresult.query!!.pages)
                 activity!!.runOnUiThread {

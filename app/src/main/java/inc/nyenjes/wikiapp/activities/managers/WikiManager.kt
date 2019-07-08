@@ -22,6 +22,12 @@ class WikiManager(
         return provider.getRandom(take, handler)
     }
 
+    fun addHistory(page: WikiPage) {
+        historyCache?.add(page)
+        historyRepository.addHistory(page)
+    }
+
+
     fun getHistory(): ArrayList<WikiPage>? {
         if (historyCache == null)
             historyCache = historyRepository.getAllHistory()
@@ -44,8 +50,14 @@ class WikiManager(
         favoritesCache = favoritesCache!!.filter { it.pageid != pageId } as ArrayList<WikiPage>
     }
 
-    fun getIsFavorite(pageId : Int) {
-        favoritesRepository.isArticleFavorite(pageId = pageId)
+    fun getIsFavorite(pageId : Int) : Boolean {
+        return favoritesRepository.isArticleFavorite(pageId = pageId)
 
+    }
+
+    fun clearHistory() {
+        historyCache!!.clear()
+        val allHistory = historyRepository.getAllHistory()
+        allHistory?.forEach{ historyRepository.removeHistory(it.pageid!!)}
     }
 }

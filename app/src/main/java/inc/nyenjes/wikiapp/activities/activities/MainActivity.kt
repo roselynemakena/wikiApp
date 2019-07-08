@@ -1,4 +1,4 @@
-package inc.nyenjes.wikiapp.activities
+package inc.nyenjes.wikiapp.activities.activities
 
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
@@ -8,7 +8,6 @@ import inc.nyenjes.wikiapp.activities.fragments.ExploreFragment
 import inc.nyenjes.wikiapp.activities.fragments.FavoritesFragment
 import inc.nyenjes.wikiapp.activities.fragments.HistoryFragment
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.activity_search.*
 
 class MainActivity : AppCompatActivity() {
 

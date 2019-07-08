@@ -4,6 +4,7 @@
     <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
+        android:name=".activities.WikiApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -11,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
         <activity
-            android:name=".activities.MainActivity"
+            android:name=".activities.activities.MainActivity"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -19,9 +20,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.ArticleDetailActivity"
+        <activity android:name=".activities.activities.ArticleDetailActivity"
             android:label="@string/app_name"/>
-        <activity android:name=".activities.SearchActivity"
+        <activity android:name=".activities.activities.SearchActivity"
             android:label="@string/app_name"/>
     </application>
 

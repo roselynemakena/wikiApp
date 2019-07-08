@@ -16,14 +16,14 @@ class ArticleDatabaseOpenHelper(context: Context)
                 "id" to INTEGER,
                 "title" to TEXT,
                 "url" to TEXT,
-                "thumbnailJson" to TEXT
+                "thumbnail" to TEXT
         )
 
         db?.createTable("history", true,
                 "id" to INTEGER,
                 "title" to TEXT,
                 "url" to TEXT,
-                "thumbnailjson" to TEXT
+                "thumbnail" to TEXT
         )
     }
 

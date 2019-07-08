@@ -8,7 +8,7 @@ import android.widget.TextView
 import com.google.gson.Gson
 import com.squareup.picasso.Picasso
 import inc.nyenjes.wikiapp.R
-import inc.nyenjes.wikiapp.activities.ArticleDetailActivity
+import inc.nyenjes.wikiapp.activities.activities.ArticleDetailActivity
 import models.WikiPage
 
 class CardViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -32,7 +32,7 @@ class CardViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         articleTitle.text = page.title
 
         if(page.thumbnail != null) {
-            Picasso.with(itemView.context).load(page.thumbnail.source).into(articleImageView)
+            Picasso.with(itemView.context).load(page.thumbnail?.source).into(articleImageView)
         }
     }
 
